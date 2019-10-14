@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sty.ne.canvas.dragbubble.MainActivity">
+
+    <Button
+        android:id="@+id/btn_reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="重置"
+        android:layout_margin="16dp"/>
+
+    <com.sty.ne.canvas.dragbubble.DragBubbleView
+        android:id="@+id/drag_bubble_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:bubble_text="12"
+        app:bubble_color="#ff0000"
+        app:bubble_radius="12dp"
+        app:bubble_textColor="#ffffff"
+        app:bubble_textSize="12sp"/>
+
+</LinearLayout>
