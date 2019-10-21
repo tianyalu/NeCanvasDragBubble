@@ -21,7 +21,7 @@
         app:bubble_text="12"
         app:bubble_color="#ff0000"
         app:bubble_radius="12dp"
-        app:bubble_textColor="#ffffff"
+        app:bubble_textColor="#000000"
         app:bubble_textSize="12sp"/>
 
 </LinearLayout>

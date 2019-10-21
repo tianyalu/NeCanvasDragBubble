@@ -145,6 +145,11 @@ public class DragBubbleView extends View {
     private int[] mBurstDrawablesArray = {R.mipmap.burst_1, R.mipmap.burst_2, R.mipmap.burst_3,
             R.mipmap.burst_4, R.mipmap.burst_5};
 
+    /**
+     * 测试文字边界的画笔
+     */
+    private Paint mBorderPaint;
+
     public DragBubbleView(Context context) {
         this(context, null);
     }
@@ -187,6 +192,7 @@ public class DragBubbleView extends View {
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setColor(mTextColor);
         mTextPaint.setTextSize(mTextSize);
+//        mTextPaint.setTextAlign(Paint.Align.CENTER);
         mTextRect = new Rect();
 
         //爆炸画笔
@@ -199,6 +205,11 @@ public class DragBubbleView extends View {
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), mBurstDrawablesArray[i]);
             mBurstBitmapsArray[i] = bitmap;
         }
+
+        mBorderPaint = new Paint();
+        mBorderPaint.setStyle(Paint.Style.FILL);
+//        mBorderPaint.setStrokeWidth(2);
+        mBorderPaint.setColor(Color.BLACK);
     }
 
     @Override
@@ -283,9 +294,12 @@ public class DragBubbleView extends View {
         if (mBubbleState != BUBBLE_STATE_DISMISS) {
             //绘制一个小球加消息数据
             canvas.drawCircle(mBubMovableCenter.x, mBubMovableCenter.y, mBubMovableRadius, mBubblePaint);
-            mTextPaint.getTextBounds(mTextStr, 0, mTextStr.length(), mTextRect);
-            canvas.drawText(mTextStr, mBubMovableCenter.x - mTextRect.width() / 2,
-                    mBubMovableCenter.y + mTextRect.height() / 2, mTextPaint);
+            mTextPaint.getTextBounds(mTextStr, 0, mTextStr.length(), mTextRect); //mTextRect(3, -26, 39, 0)
+//            canvas.drawText(mTextStr, mBubMovableCenter.x - mTextRect.width() / 2, //36/2 = 18
+//                    mBubMovableCenter.y + mTextRect.height() / 2, mTextPaint); //26/2=13
+
+            canvas.drawText(mTextStr, mBubMovableCenter.x - mTextRect.centerX(), //centerX:21 centerY:-13
+                    mBubMovableCenter.y - mTextRect.centerY(), mTextPaint); //mBubMovableCenter.x:540 mBubMovableCenter.y:720
         }
 
         //4.消失状态，爆炸效果
