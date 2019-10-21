@@ -295,9 +295,10 @@ public class DragBubbleView extends View {
             //绘制一个小球加消息数据
             canvas.drawCircle(mBubMovableCenter.x, mBubMovableCenter.y, mBubMovableRadius, mBubblePaint);
             mTextPaint.getTextBounds(mTextStr, 0, mTextStr.length(), mTextRect); //mTextRect(3, -26, 39, 0)
-//            canvas.drawText(mTextStr, mBubMovableCenter.x - mTextRect.width() / 2, //36/2 = 18
-//                    mBubMovableCenter.y + mTextRect.height() / 2, mTextPaint); //26/2=13
+            canvas.drawText(mTextStr, mBubMovableCenter.x - mTextRect.width() / 2, //36/2 = 18
+                    mBubMovableCenter.y + mTextRect.height() / 2, mTextPaint); //26/2=13
 
+            //mTextRect(3, -26, 39, 0) 文本的矩形框默认向右偏移了3个像素，导致文本不居中，坐标中心点相减的算法则避免了这个绘制问题
             canvas.drawText(mTextStr, mBubMovableCenter.x - mTextRect.centerX(), //centerX:21 centerY:-13
                     mBubMovableCenter.y - mTextRect.centerY(), mTextPaint); //mBubMovableCenter.x:540 mBubMovableCenter.y:720
         }
